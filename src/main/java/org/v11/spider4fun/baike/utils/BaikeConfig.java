@@ -1,22 +1,24 @@
-package org.v11.spider4fun.utils;
+package org.v11.spider4fun.baike.utils;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
+import org.v11.spider4fun.jiaoyimao.utils.JiaoYiMaoConfig;
+
 /**
- * Task配置文件
+ * 百科爬出的配置文件
  * @author v11
  */
-public class TaskConfig {
-	private TaskConfig(){}
-	private static Properties props = new Properties(); 
+public class BaikeConfig {
+	private BaikeConfig(){}
+	public static Properties props = new Properties(); 
 	public static void init(){
 		props = new Properties();
 		try {
 			InputStream in = 
-					TaskConfig.class.getResourceAsStream("/task.properties");
+					BaikeConfig.class.getResourceAsStream("/baike.properties");
 			//props.load(Thread.currentThread().getContextClassLoader().getResourceAsStream("mongodb.properties"));
 			props.load(in);
 			in.close();

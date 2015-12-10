@@ -1,4 +1,4 @@
-package org.v11.spider4fun.task;
+package org.v11.spider4fun.jiaoyimao.task;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -12,10 +12,11 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import org.v11.spider4fun.fetcher.webSpider;
-import org.v11.spider4fun.fetcher.impl.webSpiderImpl;
-import org.v11.spider4fun.utils.Log;
-import org.v11.spider4fun.utils.WY163Email;
+import org.v11.spider4fun.core.fetcher.webSpider;
+import org.v11.spider4fun.core.fetcher.impl.webSpiderImpl;
+import org.v11.spider4fun.core.utils.Log;
+import org.v11.spider4fun.core.utils.TaskConfig;
+import org.v11.spider4fun.core.utils.WY163Email;
 
 public class JiaoYiMaoSpiderTask {
 	static String emailUserName = "wow_haigui";
@@ -78,12 +79,15 @@ public class JiaoYiMaoSpiderTask {
 		}
 		if(message.length()>0){
 			try {
-				WY163Email.Send("wow_haigui", "wow123wow", "442629928@qq.com", "",new Date()+"账号变化", message);
-			} catch (MessagingException e) {
+				String emails = TaskConfig.getValue("jym_emails");
+				for(String to : emails.split(",")){
+					WY163Email.Send("wow_haigui", "wow123wow", to, "",new Date()+"账号变化", message);
+				}
+				
+			} catch (Exception e) {
 				Log.error("邮件异常"+e);
 			}
 		}
-		
 	}
 	public static void main(String[] args) {
 		JiaoYiMaoSpiderTask ap = new JiaoYiMaoSpiderTask();

@@ -1,4 +1,4 @@
-package org.v11.spider4fun.utils;
+package org.v11.spider4fun.core.utils;
 import com.sun.mail.smtp.SMTPTransport;
 import java.security.Security;
 import java.util.Date;

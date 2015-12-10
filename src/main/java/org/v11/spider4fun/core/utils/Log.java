@@ -1,4 +1,4 @@
-package org.v11.spider4fun.utils;
+package org.v11.spider4fun.core.utils;
 
 import org.apache.log4j.Logger;
 public class Log {

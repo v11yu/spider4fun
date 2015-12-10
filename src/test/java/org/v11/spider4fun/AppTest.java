@@ -1,8 +1,8 @@
 package org.v11.spider4fun;
 
 import org.junit.Test;
-import org.v11.spider4fun.fetcher.webSpider;
-import org.v11.spider4fun.fetcher.impl.webSpiderImpl;
+import org.v11.spider4fun.core.fetcher.webSpider;
+import org.v11.spider4fun.core.fetcher.impl.webSpiderImpl;
 
 public class AppTest {
 	@Test

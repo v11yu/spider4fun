@@ -6,6 +6,7 @@ import javax.mail.MessagingException;
 import javax.mail.internet.AddressException;
 
 import org.junit.Test;
+import org.v11.spider4fun.core.utils.WY163Email;
 
 public class EmailTest {
 	

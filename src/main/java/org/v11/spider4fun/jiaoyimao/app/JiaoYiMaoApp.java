@@ -1,4 +1,4 @@
-package org.v11.spider4fun.app;
+package org.v11.spider4fun.jiaoyimao.app;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -6,10 +6,10 @@ import java.util.List;
 import java.util.Map.Entry;
 import java.util.Set;
 
-import org.v11.spider4fun.task.JiaoYiMaoSpiderTask;
-import org.v11.spider4fun.utils.JiaoYiMaoConfig;
-import org.v11.spider4fun.utils.Log;
-import org.v11.spider4fun.utils.TaskConfig;
+import org.v11.spider4fun.core.utils.Log;
+import org.v11.spider4fun.core.utils.TaskConfig;
+import org.v11.spider4fun.jiaoyimao.task.JiaoYiMaoSpiderTask;
+import org.v11.spider4fun.jiaoyimao.utils.JiaoYiMaoConfig;
 
 
 public class JiaoYiMaoApp {
@@ -24,7 +24,6 @@ public class JiaoYiMaoApp {
 		while(iter.hasNext()){
 			Entry<Object, Object> en = iter.next();
 			urls.add((String)en.getValue());
-
 		}
 		task.work(urls);
 	}
@@ -35,6 +34,5 @@ public class JiaoYiMaoApp {
 			int TIME = TaskConfig.getNum("jym_time_interval");
 			Thread.sleep(1000*60*TIME);
 		}
-		
 	}
 }

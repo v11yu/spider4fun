@@ -1,4 +1,4 @@
-package org.v11.spider4fun.fetcher.impl;
+package org.v11.spider4fun.core.fetcher.impl;
 
 import java.io.IOException;
 import java.util.Map;
@@ -8,9 +8,9 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.utils.HttpClientUtils;
 import org.apache.http.impl.client.DefaultHttpClient;
-import org.v11.spider4fun.fetcher.webSpider;
-import org.v11.spider4fun.utils.HttpUtils;
-import org.v11.spider4fun.utils.Log;
+import org.v11.spider4fun.core.fetcher.webSpider;
+import org.v11.spider4fun.core.utils.HttpUtils;
+import org.v11.spider4fun.core.utils.Log;
 
 public class webSpiderImpl implements webSpider{
 	HttpClient client;

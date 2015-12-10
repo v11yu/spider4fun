@@ -1,4 +1,4 @@
-package org.v11.spider4fun.fetcher;
+package org.v11.spider4fun.core.fetcher;
 
 import java.util.Map;
 

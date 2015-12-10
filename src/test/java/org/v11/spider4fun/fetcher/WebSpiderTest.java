@@ -5,7 +5,8 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.junit.Test;
-import org.v11.spider4fun.fetcher.impl.webSpiderImpl;
+import org.v11.spider4fun.core.fetcher.webSpider;
+import org.v11.spider4fun.core.fetcher.impl.webSpiderImpl;
 
 public class WebSpiderTest {
 	@Test
