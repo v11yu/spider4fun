@@ -1,12 +1,10 @@
-package org.v11.spider4fun.jiaoyimao.task;
+package org.v11.spider4fun.taoshouyou.task;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import javax.mail.MessagingException;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -18,7 +16,7 @@ import org.v11.spider4fun.core.utils.Log;
 import org.v11.spider4fun.core.utils.TaskConfig;
 import org.v11.spider4fun.core.utils.WY163Email;
 
-public class JiaoYiMaoSpiderTask {
+public class TaoShouYouSpiderTask {
 	static String emailUserName = "wow_haigui";
 	static String emailPassword = "wow123wow";
 	Map<String,Double> mp = new HashMap<String, Double>();
@@ -91,7 +89,7 @@ public class JiaoYiMaoSpiderTask {
 		}
 	}
 	public static void main(String[] args) {
-		JiaoYiMaoSpiderTask ap = new JiaoYiMaoSpiderTask();
+		TaoShouYouSpiderTask ap = new TaoShouYouSpiderTask();
 		String url = "http://m.jiaoyimao.com/g1677/?keyword=%E7%BE%8A&1448508115736366=%E6%9C%AA%E8%AE%A4%E8%AF%81%E8%BA%AB%E4%BB%BD%E8%AF%81";
 		List<String> ls = new ArrayList<String>();
 		ap.work(ls);
