@@ -1,20 +1,22 @@
-package org.v11.spider4fun.taoshouyou.app;
+package org.v11.spider4fun.core.app;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map.Entry;
-import java.util.Set;
 
+import org.v11.spider4fun.core.task.ItemBasicTask;
 import org.v11.spider4fun.core.utils.Log;
 import org.v11.spider4fun.core.utils.TaskConfig;
+import org.v11.spider4fun.taoshouyou.app.TaoShouYouApp;
 import org.v11.spider4fun.taoshouyou.task.TaoShouYouSpiderTask;
 import org.v11.spider4fun.taoshouyou.utils.TaoShouYouConfig;
 
-
-public class TaoShouYouApp {
-	TaoShouYouSpiderTask task = new TaoShouYouSpiderTask("","");
-	
+public abstract class BasicLoopUpdatedApp {
+	ItemBasicTask task ;
+	public BasicLoopUpdatedApp(ItemBasicTask task){
+		this.task = task;
+	}
 	public void jobDetail() throws InterruptedException{
 		Log.info("初始化properties文件....");
 		TaoShouYouConfig.init();
