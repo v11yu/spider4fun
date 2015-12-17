@@ -24,14 +24,14 @@ public abstract class ItemBasicTask {
 	/* 邮件标题 */
 	private String etitle;
 	/* received emails 接受邮件的邮箱地址 */
-	private String emails;
+	private String emails_properties;
 	/**
 	 * construction
 	 * @param etitle 邮件标题
 	 * @param emails 接受地址
 	 */
-	public ItemBasicTask(String etitle,String emails){
-		this.emails = emails;
+	public ItemBasicTask(String etitle,String emails_properties){
+		this.emails_properties = emails_properties;
 		this.etitle = etitle;
 	}
 	/**
@@ -83,12 +83,13 @@ public abstract class ItemBasicTask {
 			}
 		}
 		if(message.length()>0){
+			Log.info(TaskConfig.getValue(emails_properties));
 			try {
-				for(String to : emails.split(",")){
+				for(String to : TaskConfig.getValue(emails_properties).split(",")){
 					WY163Email.Send("wow_haigui", "wow123wow", to, "",etitle+"账号变化"+new Date(), message);
 				}
 			} catch (Exception e) {
-				Log.error("邮件异常"+e);
+				Log.error("邮件异常"+e.getMessage());
 			}
 		}
 	}

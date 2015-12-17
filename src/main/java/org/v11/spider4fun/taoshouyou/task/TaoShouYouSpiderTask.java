@@ -21,21 +21,41 @@ public class TaoShouYouSpiderTask extends ItemBasicTask{
 	/**
 	 * construction
 	 * @param etitle 邮件标题
-	 * @param emails 接受地址
+	 * @param emails_properties 接受地址,taskconfig属性名
 	 */
-	public TaoShouYouSpiderTask(String etitle, String emails) {
-		super(etitle, emails);
+	public TaoShouYouSpiderTask(String etitle, String emails_properties) {
+		super(etitle, emails_properties);
 	}
 	@Override
 	public List<String> getgids(Document doc) {
-		return null;
+		List<String> res = new ArrayList<String>();
+		String pre = "http://www.taoshouyou.com";
+		Elements es = doc.getElementsByClass("row");
+		for(Element e:es){
+			Elements ts= e.getElementsByTag("a");
+			res.add(pre+ts.attr("href"));
+		}
+		return res;
 	}
 	@Override
 	public List<String> getItemName(Document doc) {
-		return null;
+		List<String> res = new ArrayList<String>();
+		Elements es = doc.getElementsByClass("row");
+		for(Element e:es){
+			Elements ts= e.getElementsByClass("title");
+			res.add(ts.text());
+		}
+		return res;
 	}
 	@Override
 	public List<Double> getItemPrice(Document doc) {
-		return null;
+		List<Double> res = new ArrayList<Double>();
+		Elements es = doc.getElementsByClass("row");
+		System.out.println(es.size());
+		for(Element e:es){
+			Elements ts= e.getElementsByClass("price");
+			res.add(Double.parseDouble(ts.text()));
+		}
+		return res;
 	}
 }

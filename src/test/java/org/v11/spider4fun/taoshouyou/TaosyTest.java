@@ -18,6 +18,8 @@ public class TaosyTest {
 		System.out.println(es.size());
 		for(Element e:es){
 			Log.info(e.text());
+			Elements ts= e.getElementsByClass("price");
+			Log.info(ts.size() + " "+ts.text());
 		}
 		
 	}

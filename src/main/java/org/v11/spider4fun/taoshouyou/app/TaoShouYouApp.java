@@ -13,7 +13,7 @@ import org.v11.spider4fun.taoshouyou.utils.TaoShouYouConfig;
 
 
 public class TaoShouYouApp {
-	TaoShouYouSpiderTask task = new TaoShouYouSpiderTask("","");
+	TaoShouYouSpiderTask task = new TaoShouYouSpiderTask("淘手游","taosy_emails");
 	
 	public void jobDetail() throws InterruptedException{
 		Log.info("初始化properties文件....");
