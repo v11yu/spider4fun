@@ -14,16 +14,19 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 import org.v11.spider4fun.core.fetcher.webSpider;
 import org.v11.spider4fun.core.fetcher.impl.webSpiderImpl;
+import org.v11.spider4fun.core.task.ItemBasicTask;
 import org.v11.spider4fun.core.utils.Log;
 import org.v11.spider4fun.core.utils.TaskConfig;
 import org.v11.spider4fun.core.utils.WY163Email;
 
-public class JiaoYiMaoSpiderTask {
-	static String emailUserName = "wow_haigui";
-	static String emailPassword = "wow123wow";
-	Map<String,Double> mp = new HashMap<String, Double>();
-	double eps = 1e-3;
-	List<String> getgids(Document doc){
+public class JiaoYiMaoSpiderTask extends ItemBasicTask{
+	
+	public JiaoYiMaoSpiderTask(String etitle, String emails_properties) {
+		super(etitle, emails_properties);
+		// TODO Auto-generated constructor stub
+	}
+	@Override
+	public List<String> getgids(Document doc){
 		List<String> res = new ArrayList<String>();
 		Elements ids = doc.getElementsByAttribute("category-id");
 		for(Element e : ids){
@@ -32,7 +35,8 @@ public class JiaoYiMaoSpiderTask {
 		}
 		return res;
 	}
-	List<String> getItemName(Document doc){
+	@Override
+	public List<String> getItemName(Document doc){
 		List<String> itemsName = new ArrayList<String>();
 		Elements ems = doc.getElementsByClass("brief");
 		for(Element e : ems){
@@ -40,7 +44,8 @@ public class JiaoYiMaoSpiderTask {
 		}
 		return itemsName;
 	}
-	List<Double> getItemPrice(Document doc){
+	@Override
+	public List<Double> getItemPrice(Document doc){
 		List<Double> itemsName = new ArrayList<Double>();
 		Elements ems = doc.getElementsByClass("price");
 		for(Element e : ems){
@@ -48,52 +53,12 @@ public class JiaoYiMaoSpiderTask {
 		}
 		return itemsName;
 	}
-	public void work(List<String> urls){
-		webSpider wsp = new webSpiderImpl();
-		String message = "";
-		for(String url : urls){
-			String urlString = wsp.getRequest(url);
-			Document doc = Jsoup.parse(urlString);
-			List<String> giduUrls = getgids(doc);
-			List<String> itemNames = getItemName(doc);
-			List<Double> prices = getItemPrice(doc);
-			for(int i=0;i < giduUrls.size();i++){
-				String gid = giduUrls.get(i);
-				String itemName = itemNames.get(i);
-				Double curPrice = prices.get(i);
-				String newMessage = "";
-				if(mp.containsKey(gid)){
-					Double price = mp.get(gid);
-					if(Math.abs(price - curPrice) > eps){
-						mp.put(gid, curPrice);
-						newMessage = "[价格变动] "+itemName+" 由"+price+"->"+curPrice+" "+gid;
-					}
-				}else{
-					mp.put(gid, curPrice);
-					newMessage = "[新商品] "+itemName+" "+curPrice+" "+gid;
-				}
-				if(newMessage.length()>0){
-					Log.info(newMessage);
-					message += newMessage+"\n";
-				}
-			}
-		}
-		if(message.length()>0){
-			try {
-				String emails = TaskConfig.getValue("jym_emails");
-				for(String to : emails.split(",")){
-					WY163Email.Send("wow_haigui", "wow123wow", to, "",new Date()+"账号变化", message);
-				}
-				
-			} catch (Exception e) {
-				Log.error("邮件异常"+e);
-			}
-		}
-	}
+	
 	public static void main(String[] args) {
-		JiaoYiMaoSpiderTask ap = new JiaoYiMaoSpiderTask();
+		JiaoYiMaoSpiderTask ap = new JiaoYiMaoSpiderTask("交易猫","jym_emails");
 		String url = "http://m.jiaoyimao.com/g1677/?keyword=%E7%BE%8A&1448508115736366=%E6%9C%AA%E8%AE%A4%E8%AF%81%E8%BA%AB%E4%BB%BD%E8%AF%81";
 		List<String> ls = new ArrayList<String>();
+		ls.add(url);
 		ap.work(ls);
 	}
 }

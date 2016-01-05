@@ -13,7 +13,7 @@ import org.v11.spider4fun.jiaoyimao.utils.JiaoYiMaoConfig;
 
 
 public class JiaoYiMaoApp {
-	JiaoYiMaoSpiderTask task = new JiaoYiMaoSpiderTask();
+	JiaoYiMaoSpiderTask task = new JiaoYiMaoSpiderTask("交易猫","jym_emails");
 	public void jobDetail() throws InterruptedException{
 		Log.info("初始化properties文件....");
 		JiaoYiMaoConfig.init();
